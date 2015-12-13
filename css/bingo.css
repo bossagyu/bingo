@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+#view {
+  font-size : 18em;
+  }
+
+#start {
+  width: 200px;
+}
+
+#stop {
+  width: 200px;
+}

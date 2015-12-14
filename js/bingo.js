@@ -71,7 +71,7 @@ function yaotyo() {
     switch (bingo_count) {
         case 1:
             num = 12;
-            $("view").innerHTML = num;
+            $("view").innerHTML = "<img src ='./img/" + num + ".jpg'>";
             $("out").innerHTML = $("out").innerHTML + "　" + num;
             break;
         case 4:

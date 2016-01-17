@@ -20,6 +20,8 @@ function stopBingo() {
   // ボタンの表示切り替え
   $("start").style.display = "inline";
   $("stop").style.display = "none";
+  // 音声の再生
+  document.getElementById( 'sound-file' ).play()
   isStop = true;
 }
 
@@ -71,13 +73,11 @@ function yaotyo() {
     switch (bingo_count) {
         case 1:
             num = 12;
-            $("view").innerHTML = "<img src ='./img/" + num + ".jpg'>";
-            $("out").innerHTML = $("out").innerHTML + "　" + num;
+            view_pic(num); 
             break;
         case 4:
             num = 15;
-            $("view").innerHTML = num;
-            $("out").innerHTML = $("out").innerHTML + "　" + num;
+            view_pic(num); 
             break;
         default: 
             bingo_count++;
@@ -87,4 +87,11 @@ function yaotyo() {
     return(true);
 
 }
+
+
+// 指定された番号の画像を挿入する
+function view_pic(num) {
+    $("view").innerHTML = "<img src ='./img/" + num + ".jpg'></img>";
+    $("out").innerHTML = $("out").innerHTML + "　" + num;
+ }   
 

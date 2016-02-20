@@ -98,7 +98,12 @@ function yaotyo() {
 function check_num_pic(ram_num,rnd) {
     var img = new Image();
     check_img_flag = true;
-    img.src = "./img/randam/" + ram_num + ".jpg";
+    if(bingo_count > 22) {
+        img.src = "./img/randam/" + ram_num + ".jpg";
+    } else {
+        img.src = "./img/randam/no.jpg";
+        remove_numlist(rnd);
+    }
     img.onload=function() {
         view_pic(numList[rnd],"./img/randam/");
     }

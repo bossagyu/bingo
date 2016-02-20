@@ -3,7 +3,7 @@ $ = function(x) {
 }
 
 // ビンゴ用数字配列
-var numList = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75];
+var numList = [2,3,4,5,6,7,8,9,10,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,46,47,48,49,50,51,52,53,54,55,56,57,58,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75];
 var bingo_count  = 0;
 
 var isStop = true;
@@ -37,6 +37,9 @@ function roulette() {
     // 回数に引っかかれば残りの処理をスキップする。
     if(yaotyo()) {
         return false;
+    }
+    if(view_num_pic(numList[rnd])) {
+        return false;    
     }
 
     $("view").innerHTML = numList[rnd];
@@ -72,11 +75,19 @@ function yaotyo() {
 
     switch (bingo_count) {
         case 1:
-            num = 12;
+            num = 1;
             view_pic(num); 
             break;
-        case 4:
-            num = 15;
+        case 10:
+            num = 45;
+            view_pic(num); 
+            break;
+        case 15:
+            num = 59;
+            view_pic(num); 
+            break;
+        case 20:
+            num = 11;
             view_pic(num); 
             break;
         default: 
@@ -88,10 +99,22 @@ function yaotyo() {
 
 }
 
+function view_num_pic(num) {
+    var img = new Image();
+    var flag = false;
+    img.src = "./img/" + num + ".jpg"; 
+    img.onerror = function() {
+        flag = false;
+    }
+    return flag
+}
 
 // 指定された番号の画像を挿入する
 function view_pic(num) {
-    $("view").innerHTML = "<img src ='./img/" + num + ".jpg'></img>";
+    $("view").innerHTML = "<figure class='relative'>" +
+    "<img src ='./img/" + num + ".jpg'></img>" +
+    "<figcaption class='absolute'><p>" + num + "</p></figcaption>" +
+    "</figure>";
     $("out").innerHTML = $("out").innerHTML + "　" + num;
  }   
 

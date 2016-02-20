@@ -1,10 +1,5 @@
 @charset "utf-8";
 
-#view {
-  font-size : 18em;
-  font-family: 'Hiragino Maru Gothic Pro','ヒラギノ丸ゴ Pro W4', sans-serif;
-  }
-
 h1 {
   text-align: center;
   color: #fff;
@@ -22,7 +17,14 @@ h1 {
 }
 
 #view {
+  color: #353535;
+  text-shadow: white 1px 1px 0px, white -1px 1px 0px,
+               white 1px -1px 0px, white -1px -1px 0px;
   font-family: 'Hiragino Maru Gothic Pro','ヒラギノ丸ゴ Pro W4', sans-serif;
+}
+
+.num {
+  font-size : 18em;
 }
 
 img {
@@ -36,4 +38,32 @@ hr {
     background:linear-gradient(left, #f5f5f5, #999, #f5f5f5);
     background:-webkit-linear-gradient(left, #f5f5f5, #999, #f5f5f5);
     background:-moz-linear-gradient(left, #f5f5f5, #999, #f5f5f5);
+}
+
+html { 
+    background-image: url(../img/back1.jpg);
+    background-repeat: no-repeat;
+    -moz-background-size:100% 100%;
+    background-size:100% 100%;
+    background-color: #ffcccc;
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+    bottom: 5px;
+    color: #fff;
+    background: rgba(204,51,102,.6);
+    width: 100%;
+    max-width: 1000px;
+    padding: 2px 0;
+}
+.absolute p {
+   font-size : 2em;
+    margin: 0;
+    padding: 0 0.8em;
+    text-align: center;
 }

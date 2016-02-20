@@ -37,25 +37,15 @@ function roulette() {
     if(yaotyo()) {
         return false;
     }
-    if(check_num_pic(4)) {
-        view_pic(4,"./img/randam/")
-        return false;    
-    }
+    // numList[rnd] = 5;
+    check_num_pic(numList[rnd],rnd);
 
-    $("view").innerHTML = numList[rnd];
-    if (!$("out").innerHTML) {
-      $("out").innerHTML = $("out").innerHTML + numList[rnd];
-    }
-    else {
-      $("out").innerHTML = $("out").innerHTML + "　" + numList[rnd];
-    }
-    remove_numlist(rnd)  
     return false;
   }
 
   // 乱数を画面に表示
   //document.write(rnd) 
-  $("view").innerHTML = numList[rnd];
+  $("view").innerHTML = '<div class="num">' + numList[rnd] + '</div>';
   // 100ms後に再帰的に実行するよう登録する
   id = setTimeout("roulette()", 100);
 
@@ -79,7 +69,7 @@ function yaotyo() {
     var num = "";
     var path = "./img/abe/"
     switch (bingo_count) {
-        case 1:
+        case 5:
             num = 1;
             view_pic(num,path); 
             break;
@@ -105,14 +95,23 @@ function yaotyo() {
 }
 
 // ファイルの存在確認
-function check_num_pic(ram_num) {
+function check_num_pic(ram_num,rnd) {
     var img = new Image();
     check_img_flag = true;
-    img.src = "./img/randam/" + ram_num + ".jpg"; 
-    if(img.addEventListener){
-        img.addEventListener("error",ImageErrorFunc);
+    img.src = "./img/randam/" + ram_num + ".jpg";
+    img.onload=function() {
+        view_pic(numList[rnd],"./img/randam/");
     }
-    return check_img_flag
+    img.onerror=function() {
+        $("view").innerHTML = '<div class="num">' + numList[rnd] + '</div>';
+        if (!$("out").innerHTML) {
+          $("out").innerHTML = $("out").innerHTML + numList[rnd];
+        }
+        else {
+          $("out").innerHTML = $("out").innerHTML + "　" + numList[rnd];
+        }
+        remove_numlist(rnd);
+    }
 }
 
 // check_img_flagをfalseにsetするだけの関数

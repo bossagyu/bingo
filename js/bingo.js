@@ -27,6 +27,8 @@ function stopBingo() {
 function roulette() {
   var id = "";
   var rnd = Math.floor(Math.random() * numList.length);
+  console.log("stop       :" + rnd)
+  console.log("stop_length:" + numList.length)
   // ストップボタンが押された
   if (isStop) {
     // 遅延呼び出しを解除
@@ -54,8 +56,10 @@ function roulette() {
 // 配列から要素を削除する
 function remove_numlist(rnd) {
     //決定した数字をリストから削除する
+    console.log("remove_rnd:" + rnd)
+    console.log("remove_num:" + numList.length)
     numList.splice(rnd, 1);
-    // リストが空になったら終了
+    // リストが空klになったら終了
     if (numList.length == 0) {
       alert("最後です。");
       $("start").disabled = true;
@@ -102,10 +106,10 @@ function check_num_pic(ram_num,rnd) {
         img.src = "./img/randam/" + ram_num + ".jpg";
     } else {
         img.src = "./img/randam/no.jpg";
-        remove_numlist(rnd);
     }
     img.onload=function() {
         view_pic(numList[rnd],"./img/randam/");
+        remove_numlist(rnd);
     }
     img.onerror=function() {
         $("view").innerHTML = '<div class="num">' + numList[rnd] + '</div>';
